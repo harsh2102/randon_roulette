@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/randon_roulette/static/css/main.7294eadb.css",
+    "main.css": "/randon_roulette/static/css/main.dd9f790f.css",
     "main.js": "/randon_roulette/static/js/main.ae1e118f.js",
     "static/js/453.ed3810f9.chunk.js": "/randon_roulette/static/js/453.ed3810f9.chunk.js",
     "static/media/aditya-birla-logo.png": "/randon_roulette/static/media/aditya-birla-logo.80896c9fca03ba1654d7.png",
     "index.html": "/randon_roulette/index.html",
-    "main.7294eadb.css.map": "/randon_roulette/static/css/main.7294eadb.css.map",
+    "main.dd9f790f.css.map": "/randon_roulette/static/css/main.dd9f790f.css.map",
     "main.ae1e118f.js.map": "/randon_roulette/static/js/main.ae1e118f.js.map",
     "453.ed3810f9.chunk.js.map": "/randon_roulette/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7294eadb.css",
+    "static/css/main.dd9f790f.css",
     "static/js/main.ae1e118f.js"
   ]
 }
