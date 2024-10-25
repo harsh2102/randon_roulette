@@ -1,3 +1,10 @@
+body {
+  background: linear-gradient(1deg, #ffcccc, #2d98c3);
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+}
+
 .winner-modal {
   position: fixed;
   top: 50%;
@@ -89,4 +96,16 @@
 .spin-button:hover,
 .download-button:hover {
   background-color: #457b9d; /* Lighter blue on hover */
+}
+
+.spin-counter {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 5px;
 }

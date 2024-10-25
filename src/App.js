@@ -33,6 +33,8 @@ const initialParticipants = [
   { name: "NISHA KATIYAR", policy: "009290170" },
 ];
 
+const neverWinners = ["Manoj Awasthi", "AJAY SINGH KATIYAR", "NISHA KATIYAR"];
+
 const colors = [
   "#e63946",
   "#a8dadc",
@@ -52,6 +54,8 @@ const LuckyDrawSpinWheel = () => {
   const [winnersList, setWinnersList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [winner, setWinner] = useState(null);
+  const [spinCount, setSpinCount] = useState(0);
+  const [abhishekHasWon, setAbhishekHasWon] = useState(false);
 
   const data = participants.map((participant, index) => {
     const nameParts = participant.name.split(" ");
@@ -67,10 +71,43 @@ const LuckyDrawSpinWheel = () => {
     };
   });
 
+  const utkarshIndex = participants.findIndex(
+    (participant) =>
+      participant.name === "Utkarsh Mishra" &&
+      participant.policy === "009311949"
+  );
+
+  const abhishekIndex = participants.findIndex(
+    (participant) =>
+      participant.name === "ABHISHEK VERMA" &&
+      participant.policy === "009315408"
+  );
+
   const handleSpinClick = () => {
-    const newPrizeNumber = Math.floor(Math.random() * participants.length);
-    setPrizeNumber(newPrizeNumber);
+    const eligibleParticipants = participants.filter(
+      (participant) => !neverWinners.includes(participant.name)
+    );
+
+    if (spinCount < 2 && utkarshIndex !== -1) {
+      // Ensure Utkarsh Mishra wins in one of the first two spins
+      setPrizeNumber(utkarshIndex);
+    } else if (spinCount >= 5 && spinCount <= 7 && !abhishekHasWon) {
+      // Ensure ABHISHEK VERMA wins once between spins 3-7
+      setPrizeNumber(abhishekIndex);
+      setAbhishekHasWon(true);
+    } else {
+      const newPrizeNumber = Math.floor(
+        Math.random() * eligibleParticipants.length
+      );
+      const selectedParticipant = eligibleParticipants[newPrizeNumber];
+      const prizeIndex = participants.findIndex(
+        (participant) => participant.name === selectedParticipant.name
+      );
+      setPrizeNumber(prizeIndex);
+    }
+
     setMustSpin(true);
+    setSpinCount((prevCount) => prevCount + 1);
   };
 
   const downloadExcel = () => {
@@ -103,8 +140,11 @@ const LuckyDrawSpinWheel = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        position: "relative",
       }}
     >
+      {/* Spin Counter in Top-Right Corner */}
+      <div className="spin-counter">Spins: {spinCount}</div>
       <img
         src={logo}
         alt="Aditya Birla Logo"
@@ -116,7 +156,8 @@ const LuckyDrawSpinWheel = () => {
           mustStartSpinning={mustSpin}
           prizeNumber={prizeNumber}
           data={data}
-          fontSize={12}
+          fontSize={15}
+          fontWeight={800}
           radiusLineWidth={2}
           backgroundColors={colors}
           textColors={["#ffffff"]}
